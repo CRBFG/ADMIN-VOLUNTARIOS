@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historial y Autorizaciones</title>
+  <link rel="stylesheet" href="css/actividades.css">
+
+  <!-- 🔥 EVITA CACHE -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- 🔧 FAVICON FIX -->
+  <link rel="icon" href="data:,">
+
+  <!-- 🔥 SUPABASE (MEJOR CDN) -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2" defer></script>
+
+  <!-- 🔐 PROTECCIÓN DE RUTA -->
+  <script src="JS/auth.js"></script>
+</head>
+<body>
+
+    <button onclick="irCrearVoluntario()">
+  Volver a Registro de Voluntario
+</button>
+
+    <!-- 🔓 BOTÓN CERRAR SESIÓN AQUÍ -->
+  <div style="text-align:right; padding:10px;">
+    <button onclick="logout()">Cerrar sesión</button>
+  </div>
+
+  <h1>Historial y Autorizaciones del Voluntario</h1>
+
+  <h3 id="voluntario">
+    Voluntario:
+  </h3>
+
+  <form id="form-actividad">
+
+    <hr>
+    <h2>Actividad en la que participó</h2>
+
+    <!-- SELECT INTELIGENTE -->
+    <label>Actividad</label><br>
+    <select id="actividad" onchange="cargarActividad()">
+      <option value="">Seleccionar actividad</option>
+      <option value="dref">Proyecto Dref Sequía e Incendio</option>
+      <option value="aspirantes">Capacitación Aspirantes</option>
+      <option value="pandemia">Primer Respondiente Pandemia</option>
+      <option value="primeros_auxilios">Curso Primeros Auxilios</option>
+      <option value="fib">Formación Institucional Básica</option>
+      <option value="ams">Acceso Más Seguro</option>
+      <option value="incendio">Combate de Incendio Forestal</option>
+      <option value="otro">Otro</option>
+    </select><br><br>
+
+    <!-- INPUT OTRO -->
+    <input
+      type="text"
+      id="actividadOtro"
+      placeholder="Especifique actividad"
+      style="display:none;"
+    ><br><br>
+
+    <!-- DESCRIPCIÓN -->
+    <label>Descripción</label><br>
+    <textarea id="descripcion" rows="4" cols="60"></textarea><br><br>
+
+    <label>Fecha inicio</label><br>
+    <input type="date" id="fecha_inicio" required><br><br>
+
+    <label>Fecha fin</label><br>
+    <input type="date" id="fecha_fin"><br><br>
+
+    <hr>
+    <h2>Participación del voluntario</h2>
+
+    <label>Rol</label><br>
+    <select id="rol">
+      <option>Participante</option>
+      <option>Instructor</option>
+      <option>Coordinador</option>
+      <option>Supervisor</option>
+      <option>Otro</option>
+    </select><br><br>
+
+    <input
+      type="text"
+      id="rol_manual"
+      placeholder="Escriba otro rol"
+      style="display:none;"
+    ><br><br>
+
+    <hr>
+    <h2>Autorización vigente</h2>
+
+    <label>Estado</label><br>
+    <select id="status">
+      <option value="aprobado">Aprobado</option>
+      <option value="pendiente">Pendiente</option>
+      <option value="rechazado">Rechazado</option>
+      <option value="vencido">Vencido</option>
+    </select><br><br>
+
+    <label>Válido desde</label><br>
+    <input type="date" id="valid_from"><br><br>
+
+    <label>Válido hasta</label><br>
+    <input type="date" id="valid_until"><br><br>
+
+    <button type="submit">
+      💾 Guardar historial y autorización
+    </button>
+
+  </form>
+
+  <p id="mensaje"></p>
+
+  <!-- 🔥 TU JS (CON CACHE BUSTER + DEFER) -->
+  <script src="js/actividades.js?v=3" defer></script>
+
+  <script>
+function logout() {
+  localStorage.removeItem("sesion");
+  localStorage.removeItem("sesion_time");
+  localStorage.removeItem("usuario");
+  localStorage.removeItem("rol");
+
+  window.location.href = "login.html";
+}
+</script>
+
+<script>
+function irCrearVoluntario() {
+  window.location.href = "crear-voluntario.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="5; url=login.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirigiendo...</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+    }
+
+    .box {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      width: 320px;
+    }
+
+    .loader {
+      width: 55px;
+      height: 55px;
+      border: 5px solid rgba(255,255,255,0.2);
+      border-top: 5px solid white;
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    h2 {
+      margin: 10px 0;
+    }
+
+    #mensaje {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <div class="loader"></div>
+
+    <h2>Accediendo al sistema</h2>
+
+    <p id="mensaje">Inicializando...</p>
+  </div>
+
+  <script>
+    const mensajes = [
+      "Inicializando sistema...",
+      "Verificando sesión de usuario...",
+      "Cargando módulos de voluntarios...",
+      "Preparando entorno de trabajo...",
+      "Redirigiendo al login..."
+    ];
+
+    let i = 0;
+    const texto = document.getElementById("mensaje");
+
+    const intervalo = setInterval(() => {
+      texto.innerText = mensajes[i];
+      i++;
+
+      if (i === mensajes.length) {
+        clearInterval(intervalo);
+      }
+    }, 900);
+  </script>
+
+</body>
+</html>

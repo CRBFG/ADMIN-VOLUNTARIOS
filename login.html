@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+
+  <style>
+    /* ========================= */
+    /* VARIABLES */
+    /* ========================= */
+    :root {
+      --primary: #00c6ff;
+      --primary-dark: #0072ff;
+      --bg: #0f172a;
+      --card: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --subtext: #94a3b8;
+      --border: rgba(255, 255, 255, 0.15);
+      --error: #ef4444;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* ========================= */
+    /* BODY */
+    /* ========================= */
+    body {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+      background-size: 400% 400%;
+      animation: fondoAnimado 15s ease infinite;
+      color: var(--text);
+      padding: 20px;
+    }
+
+    /* ========================= */
+    /* BOX LOGIN */
+    /* ========================= */
+    .box {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 350px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+      text-shadow: 0 0 12px rgba(0,198,255,0.7);
+    }
+
+    /* ========================= */
+    /* INPUTS */
+    /* ========================= */
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    input::placeholder {
+      color: var(--subtext);
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 12px rgba(0,198,255,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ========================= */
+    /* BOTÓN */
+    /* ========================= */
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 15px rgba(0,198,255,0.7);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    /* ========================= */
+    /* MENSAJE ERROR */
+    /* ========================= */
+    #error {
+      color: var(--error);
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(239,68,68,0.6);
+    }
+
+    /* ========================= */
+    /* ANIMACIONES */
+    /* ========================= */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fondoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ========================= */
+    /* RESPONSIVE */
+    /* ========================= */
+    @media (max-width: 480px) {
+      .box {
+        padding: 20px;
+      }
+      .box h2 {
+        font-size: 1.4rem;
+      }
+      input, button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Iniciar Sesión</h2>
+
+    <input type="text" id="username" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <button onclick="login()">Entrar</button>
+
+    <p id="error"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="JS/login.js"></script>
+</body>
+</html>
+
+

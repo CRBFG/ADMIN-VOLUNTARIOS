@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Voluntario</title>
+  <link rel="stylesheet" href="css/crear-voluntario.css">
+
+  <!-- Supabase (solo una vez) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 🔐 PROTECCIÓN DE RUTA -->
+  <script src="JS/auth.js"></script>
+</head>
+
+<body>
+
+    <body>
+
+  <!-- 🔓 BOTÓN CERRAR SESIÓN AQUÍ -->
+  <div style="text-align:right; padding:10px;">
+    <button onclick="logout()">Cerrar sesión</button>
+  </div>
+  <h1>Registro de Voluntario</h1>
+  <p>Formulario de creación de nuevos voluntarios</p>
+
+  <form id="form-voluntario">
+
+    <!-- ========================= -->
+    <!-- DATOS PRINCIPALES -->
+    <!-- ========================= -->
+
+    <h3>Datos Personales</h3>
+
+    <label for="nombre">Nombre</label><br>
+    <input
+      type="text"
+      id="nombre"
+      placeholder="Ingrese el nombre"
+      required
+    >
+    <br><br>
+
+    <label for="apellido">Apellido</label><br>
+    <input
+      type="text"
+      id="apellido"
+      placeholder="Ingrese el apellido"
+      required
+    >
+    <br><br>
+
+    <label for="ci">CI</label><br>
+    <input
+      type="text"
+      id="ci"
+      placeholder="Ingrese el carnet de identidad"
+      required
+    >
+    <br><br>
+
+    <label for="telefono">Teléfono</label><br>
+    <input
+      type="text"
+      id="telefono"
+      placeholder="Ingrese el teléfono"
+    >
+    <br><br>
+
+    <!-- ========================= -->
+    <!-- ÁREA -->
+    <!-- ========================= -->
+
+    <label for="area_select">Área / Cargo</label><br>
+    <select id="area_select" required>
+      <option value="">Seleccionar área</option>
+
+      <option value="Voluntario">Voluntario</option>
+      <option value="Instructor PP.AA.">Instructor PP.AA.</option>
+
+      <option value="Responsable de Voluntariado">
+        Responsable de Voluntariado
+      </option>
+
+      <option value="Responsable de Socorros">
+        Responsable de Socorros
+      </option>
+
+      <option value="Responsable de Salud">
+        Responsable de Salud
+      </option>
+
+      <option value="Responsable de Juventud">
+        Responsable de Juventud
+      </option>
+
+      <option value="Responsable de Comunicación">
+        Responsable de Comunicación
+      </option>
+
+      <option value="Directorio">Directorio</option>
+      <option value="Dama Voluntaria">Dama Voluntaria</option>
+      <option value="Brigadista">Brigadista</option>
+      <option value="Respondiente PP.AA.">Respondiente PP.AA.</option>
+      <option value="Bombero Forestal">Bombero Forestal</option>
+
+      <option value="otro">Otro</option>
+    </select>
+    <br><br>
+
+    <label for="area_manual">Área Manual (si selecciona Otro)</label><br>
+    <input
+      type="text"
+      id="area_manual"
+      placeholder="Escriba el área manualmente"
+      style="display:none;"
+    >
+    <br><br>
+
+    <!-- ========================= -->
+    <!-- AÑO -->
+    <!-- ========================= -->
+
+    <label for="anio_ingreso">Año de Ingreso</label><br>
+    <input
+      type="number"
+      id="anio_ingreso"
+      placeholder="Ejemplo: 2024"
+    >
+    <br><br>
+
+    <!-- ========================= -->
+    <!-- ESTADO -->
+    <!-- ========================= -->
+
+    <label for="estado">Estado</label><br>
+    <select id="estado">
+      <option value="Activo">Activo</option>
+      <option value="Inactivo">Inactivo</option>
+    </select>
+    <br><br>
+
+    <!-- ========================= -->
+    <!-- FOTO -->
+    <!-- ========================= -->
+
+    <h3>Fotografía</h3>
+
+    <label for="foto">Seleccionar Foto</label><br>
+    <input
+      type="file"
+      id="foto"
+      accept="image/*"
+    >
+    <br><br>
+
+    <img
+      id="preview"
+      style="max-width: 220px; display: none; border-radius: 8px;"
+    >
+    <br><br>
+
+    <!-- ========================= -->
+    <!-- CONTACTO EMERGENCIA -->
+    <!-- ========================= -->
+
+    <h3>Contacto de Emergencia</h3>
+
+    <label for="contacto_nombre">Nombre del Contacto</label><br>
+    <input
+      type="text"
+      id="contacto_nombre"
+      placeholder="Nombre del contacto de emergencia"
+    >
+    <br><br>
+
+    <label for="contacto_telefono">Teléfono del Contacto</label><br>
+    <input
+      type="text"
+      id="contacto_telefono"
+      placeholder="Teléfono del contacto de emergencia"
+    >
+    <br><br>
+
+    <!-- ========================= -->
+    <!-- BOTÓN -->
+    <!-- ========================= -->
+
+    <button type="submit">
+      Guardar Voluntario
+    </button>
+
+  </form>
+
+  <br>
+
+  <p id="mensaje"></p>
+
+  <!-- JS principal -->
+  <script src="js/voluntarios.js"></script>
+
+  <script>
+function logout() {
+  localStorage.removeItem("sesion");
+  localStorage.removeItem("sesion_time");
+  localStorage.removeItem("usuario");
+  localStorage.removeItem("rol");
+
+  window.location.href = "login.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Relaciones</title>
+  <link rel="stylesheet" href="css/relaciones.css">
+
+  <!-- Supabase (solo una vez) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Tu script -->
+  <script src="js/relaciones.js" defer></script>
+
+  <script>
+    // Obtener código desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const codigo = params.get("codigo");
+
+    // Función para ir a actividades
+    function irActividades(cod) {
+      window.location.href = `actividades.html?codigo=${cod}`;
+    }
+
+    // Mostrar código en pantalla cuando cargue
+    window.onload = function() {
+      if (codigo) {
+        document.getElementById("voluntario").innerText = "Voluntario: " + codigo;
+
+        // Asignar el código al botón dinámicamente
+        document.getElementById("btn-actividades").onclick = function() {
+          irActividades(codigo);
+        };
+      } else {
+        document.getElementById("voluntario").innerText = "No se proporcionó código";
+      }
+    };
+  </script>
+
+    <script src="JS/auth.js"></script>
+
+</head>
+
+<body>
+
+    <!-- 🔓 BOTÓN CERRAR SESIÓN AQUÍ -->
+  <div style="text-align:right; padding:10px;">
+    <button onclick="logout()">Cerrar sesión</button>
+  </div>
+  <h1>Registro de Voluntario</h1>
+  <p>Formulario de creación de nuevos voluntarios</p>
+
+<h2>Gestión de Capacitaciones y Especializaciones</h2>
+
+<p id="voluntario"></p>
+
+<!-- BOTÓN NUEVO -->
+<button id="btn-actividades">Ver actividades</button>
+
+<hr>
+
+<!-- CAPACITACIONES -->
+<h3>📚 Capacitaciones</h3>
+<div id="capacitaciones-container"></div>
+<button id="btn-add-cap">+ Agregar capacitación</button>
+
+<hr>
+
+<!-- ESPECIALIZACIONES -->
+<h3>🎯 Especializaciones</h3>
+<div id="especializaciones-container"></div>
+<button id="btn-add-esp">+ Agregar especialización</button>
+
+<hr>
+
+<p id="mensaje"></p>
+
+<script>
+function logout() {
+  localStorage.removeItem("sesion");
+  localStorage.removeItem("sesion_time");
+  localStorage.removeItem("usuario");
+  localStorage.removeItem("rol");
+
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
